@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import Hello from '~/components/Hello';
 import Template from './components/template';
+import ProductDetail from './components/views/product-detail';
 import ProductList from './components/views/product-list';
 
 function App() {
@@ -8,6 +8,7 @@ function App() {
     <Template>
       <Routes>
         <Route path='/' element={<ProductList />} />
+        <Route path='/product' element={<ProductDetail />} />
       </Routes>
     </Template>
   );

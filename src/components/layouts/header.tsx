@@ -6,16 +6,12 @@ import { FC, useState } from 'react';
 const Header: FC = () => {
   const [openedDrawer, setOpenedDrawer] = useState(false);
 
-  function toggleDrawer() {
-    setOpenedDrawer(!openedDrawer);
-  }
-
-  function changeNav(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) {
+  const changeNav = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     e.preventDefault();
     if (openedDrawer) {
       setOpenedDrawer(false);
     }
-  }
+  };
 
   return (
     <header>
@@ -29,8 +25,8 @@ const Header: FC = () => {
           <div className={'navbar-collapse offcanvas-collapse ' + (openedDrawer ? 'open' : '')}>
             <ul className='navbar-nav me-auto mb-lg-0'>
               <li className='nav-item'>
-                <Link to='/products' className='nav-link' replace onClick={changeNav}>
-                  Explore
+                <Link to='/admin' className='nav-link' replace onClick={changeNav}>
+                  Admin
                 </Link>
               </li>
             </ul>
@@ -45,13 +41,7 @@ const Header: FC = () => {
               <RiShoppingCartFill size={20} />
               <span className='ms-3 badge rounded-pill bg-dark'>0</span>
             </button>
-            <button
-              className='navbar-toggler p-0 border-0 ms-3'
-              type='button'
-              onClick={toggleDrawer}
-            >
-              <span className='navbar-toggler-icon'></span>
-            </button>
+            <button className='navbar-toggler p-0 border-0 ms-3' type='button'></button>
           </div>
         </div>
       </nav>

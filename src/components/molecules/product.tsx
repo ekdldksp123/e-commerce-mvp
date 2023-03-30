@@ -1,15 +1,29 @@
-import { Link } from 'react-router-dom';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { FC } from 'react';
 import { BsCartPlusFill } from 'react-icons/bs';
 import { ProductData } from '~/types/product';
+import { useProductDetail } from '~/libs/store.module';
+import { useNavigate } from 'react-router-dom';
 
-const Product: FC<ProductData> = ({ id, title, price, description, image }) => {
+const Product: FC<ProductData> = ({ id, title, category, price, description, image }) => {
+  const navigate = useNavigate();
+  const { setDetail } = useProductDetail();
+
+  const onProductClickHandler = () => {
+    setDetail({ id, title, category, price, description, image });
+    navigate('/product');
+  };
+
   return (
     <div className='col'>
       <div className='card shadow-sm'>
-        <Link to='/products/1' replace>
-          <img className='card-img-top bg-dark cover' height='200' alt='' src={image} />
-        </Link>
+        <img
+          className='card-img-top bg-dark cover'
+          height='200'
+          alt=''
+          src={image}
+          onClick={onProductClickHandler}
+        />
         <div className='card-body'>
           <h5 className='card-title text-center text-dark text-truncate'>{title}</h5>
           <p className='card-text text-center text-muted mb-0'>{price}</p>
