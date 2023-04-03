@@ -2,6 +2,11 @@
   "name": "vite-react-ts-eslint-prettier",
   "private": true,
   "version": "0.0.0",
+  "files": [
+    "dist"
+  ],
+  "main": "./index.html",
+  "module": "./dist/assets/index.a47515c8.js",
   "homepage": "https://ekdldksp123.github.io/ecommerce-mvp/",
   "scripts": {
     "dev": "cross-env NODE_ENV=development vite",

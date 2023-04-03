@@ -24,7 +24,6 @@ jobs:
         uses: actions/setup-node@v1
       - run: |
           sudo yarn run build
-          sudo yarn run export
         env:
           CI: true
           DEPLOY_TARGET: gh-pages
