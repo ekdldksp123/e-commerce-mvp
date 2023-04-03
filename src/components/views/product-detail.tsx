@@ -1,10 +1,21 @@
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { setCartData } from '~/libs/storage.module';
+import { useCart } from '~/libs/store.module';
 import ScrollToTopOnMount from '../atoms/scroll-to-top';
 
 const ProductDetail: FC = () => {
   const location = useLocation();
+  const { items, setItems } = useCart();
   const { image, title, category, price, description } = location.state;
+
+  const onAddCart = () => {
+    const copyItems = [...items];
+    copyItems.push({ image, title, category, price, description });
+    setItems(copyItems);
+
+    setCartData(copyItems);
+  };
 
   return (
     <div className='container mt-5 py-4 px-xl-5'>
@@ -50,11 +61,13 @@ const ProductDetail: FC = () => {
         <div className='col-lg-5'>
           <div className='d-flex flex-column h-100'>
             <h2 className='mb-1'>{title}</h2>
-            <h4 className='text-muted mb-4'>{price} $</h4>
+            <h4 className='text-muted mb-4'>$ {price}</h4>
 
             <div className='row g-3 mb-4'>
               <div className='col'>
-                <button className='btn btn-outline-dark py-2 w-100'>Add to cart</button>
+                <button className='btn btn-outline-dark py-2 w-100' onClick={onAddCart}>
+                  Add to cart
+                </button>
               </div>
               <div className='col'>
                 <button className='btn btn-dark py-2 w-100'>Buy now</button>
