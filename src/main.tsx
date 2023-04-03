@@ -15,7 +15,9 @@ const isProd = process.env.NODE_ENV === 'production';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter basename={isProd ? 'https://ekdldksp123.github.io/ecommerce-mvp/' : ''}>
+    <BrowserRouter
+      basename={isProd ? 'https://ekdldksp123.github.io/ecommerce-mvp/' : 'ecommerce-mvp/'}
+    >
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={true} />
         <App />

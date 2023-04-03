@@ -7,8 +7,8 @@ export const getAllProducts = async () => {
 };
 
 // get single product
-export const getASingleProduct = async () => {
-  return axios.get('https://fakestoreapi.com/products/1').then((res) => res.data);
+export const getASingleProduct = async (id: string) => {
+  return axios.get(`https://fakestoreapi.com/products/${id}`).then((res) => res.data);
 };
 
 // add new product

@@ -1,6 +1,10 @@
 import { ProductData } from './product';
 
 export interface CartState {
-  items: ProductData[];
-  setItems: (item: ProductData[]) => void;
+  items: CartItem[];
+  setItems: (item: CartItem[]) => void;
+}
+
+export interface CartItem extends ProductData {
+  amount: number;
 }

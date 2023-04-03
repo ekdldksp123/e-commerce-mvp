@@ -9,6 +9,7 @@ import { setCartData } from '~/libs/storage.module';
 const Product: FC<ProductData> = ({ id, title, category, price, description, image }) => {
   const { items, setItems } = useCart();
   const productData: ProductData = {
+    id: id,
     image: image,
     title: title,
     category: category,
@@ -18,9 +19,16 @@ const Product: FC<ProductData> = ({ id, title, category, price, description, ima
 
   const onAddCart = () => {
     const copyItems = [...items];
-    copyItems.push(productData);
-    setItems(copyItems);
+    const findItem = copyItems.find((v) => v.id === id);
 
+    if (findItem) {
+      findItem.amount += 1;
+      const index = copyItems.findIndex((v) => v.id === id);
+      copyItems[index] = findItem;
+    } else {
+      copyItems.push({ ...productData, amount: 1 });
+    }
+    setItems(copyItems);
     setCartData(copyItems);
   };
 

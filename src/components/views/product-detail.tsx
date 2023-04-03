@@ -7,13 +7,20 @@ import ScrollToTopOnMount from '../atoms/scroll-to-top';
 const ProductDetail: FC = () => {
   const location = useLocation();
   const { items, setItems } = useCart();
-  const { image, title, category, price, description } = location.state;
+  const { id, image, title, category, price, description } = location.state;
 
   const onAddCart = () => {
     const copyItems = [...items];
-    copyItems.push({ image, title, category, price, description });
-    setItems(copyItems);
+    const findItem = copyItems.find((v) => v.id === id);
 
+    if (findItem) {
+      findItem.amount += 1;
+      const index = copyItems.findIndex((v) => v.id === id);
+      copyItems[index] = findItem;
+    } else {
+      copyItems.push({ id, image, title, category, price, description, amount: 1 });
+    }
+    setItems(copyItems);
     setCartData(copyItems);
   };
 

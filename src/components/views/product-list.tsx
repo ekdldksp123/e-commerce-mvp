@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useQuery } from 'react-query';
 import { getAllProducts } from '~/libs/api.module';
 import { ProductData } from '~/types/product';
+import { ContainerCenter } from '../atoms/container-group';
 import ScrollToTopOnMount from '../atoms/scroll-to-top';
 import Product from '../molecules/product';
 
@@ -9,11 +10,26 @@ const ProductList: FC = () => {
   const { isLoading, error, data } = useQuery('products', getAllProducts);
 
   if (isLoading) {
-    return <>Loading...</>;
+    return (
+      <ContainerCenter>
+        <button className='btn btn-primary' type='button' disabled>
+          <span
+            className='spinner-border spinner-border-sm'
+            role='status'
+            aria-hidden='true'
+          ></span>
+          <span className='sr-only'>Loading...</span>
+        </button>
+      </ContainerCenter>
+    );
   }
 
   if (error) {
-    return <>Error: {error}</>;
+    return (
+      <div className='d-flex justify-content-center align-items-center'>
+        <>Error: {error}</>
+      </div>
+    );
   }
 
   return (

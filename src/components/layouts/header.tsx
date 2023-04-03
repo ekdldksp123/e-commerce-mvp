@@ -1,12 +1,23 @@
 import { FaShopify } from 'react-icons/fa';
 import { RiShoppingCartFill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
-import { FC } from 'react';
+import { FC, useLayoutEffect, useState } from 'react';
 import { useCart } from '~/libs/store.module';
+
+const openedDrawer = false;
 
 const Header: FC = () => {
   const { items } = useCart();
-  const openedDrawer = false;
+
+  const [amountOfItems, setAmountOfItems] = useState<number>(0);
+
+  useLayoutEffect(() => {
+    let amount = 0;
+    for (const item of items) {
+      amount += item.amount;
+    }
+    setAmountOfItems(amount);
+  }, []);
 
   return (
     <header>
@@ -24,18 +35,21 @@ const Header: FC = () => {
                 </Link>
               </li>
             </ul>
-            <button type='button' className='btn btn-outline-dark me-3 d-none d-lg-inline'>
-              <RiShoppingCartFill size={20} />
-              <span className='ms-3 badge rounded-pill bg-dark'>{items.length}</span>
-            </button>
+            <Link to='/cart'>
+              <button type='button' className='btn btn-outline-dark me-3 d-none d-lg-inline'>
+                <RiShoppingCartFill size={20} />
+                <span className='ms-3 badge rounded-pill bg-dark'>{amountOfItems}</span>
+              </button>
+            </Link>
           </div>
 
           <div className='d-inline-block d-lg-none'>
-            <button type='button' className='btn btn-outline-dark'>
-              <RiShoppingCartFill size={20} />
-              <span className='ms-3 badge rounded-pill bg-dark'>{items.length}</span>
-            </button>
-            <button className='navbar-toggler p-0 border-0 ms-3' type='button'></button>
+            <Link to='/cart'>
+              <button type='button' className='btn btn-outline-dark'>
+                <RiShoppingCartFill size={20} />
+                <span className='ms-3 badge rounded-pill bg-dark'>{amountOfItems}</span>
+              </button>
+            </Link>
           </div>
         </div>
       </nav>
