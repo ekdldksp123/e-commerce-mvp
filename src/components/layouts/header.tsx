@@ -1,7 +1,7 @@
 import { FaShopify } from 'react-icons/fa';
 import { RiShoppingCartFill } from 'react-icons/ri';
 import { Link } from 'react-router-dom';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { useCart } from '~/libs/store.module';
 
 const Header: FC = () => {
