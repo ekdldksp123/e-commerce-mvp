@@ -4,6 +4,7 @@ import { getAllProducts } from '~/libs/api.module';
 import { ProductData } from '~/types/product';
 import { ContainerCenter } from '../atoms/container-group';
 import ScrollToTopOnMount from '../atoms/scroll-to-top';
+import { Spinner } from '../atoms/spinner';
 import Product from '../molecules/product';
 
 const ProductList: FC = () => {
@@ -12,14 +13,7 @@ const ProductList: FC = () => {
   if (isLoading) {
     return (
       <ContainerCenter>
-        <button className='btn btn-primary' type='button' disabled>
-          <span
-            className='spinner-border spinner-border-sm'
-            role='status'
-            aria-hidden='true'
-          ></span>
-          <span className='sr-only'>Loading...</span>
-        </button>
+        <Spinner />
       </ContainerCenter>
     );
   }

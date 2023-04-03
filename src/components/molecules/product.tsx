@@ -8,14 +8,6 @@ import { setCartData } from '~/libs/storage.module';
 
 const Product: FC<ProductData> = ({ id, title, category, price, description, image }) => {
   const { items, setItems } = useCart();
-  const productData: ProductData = {
-    id: id,
-    image: image,
-    title: title,
-    category: category,
-    price: price,
-    description: description,
-  };
 
   const onAddCart = () => {
     const copyItems = [...items];
@@ -26,6 +18,14 @@ const Product: FC<ProductData> = ({ id, title, category, price, description, ima
       const index = copyItems.findIndex((v) => v.id === id);
       copyItems[index] = findItem;
     } else {
+      const productData: ProductData = {
+        id: id,
+        image: image,
+        title: title,
+        category: category,
+        price: price,
+        description: description,
+      };
       copyItems.push({ ...productData, amount: 1 });
     }
     setItems(copyItems);
@@ -35,7 +35,7 @@ const Product: FC<ProductData> = ({ id, title, category, price, description, ima
   return (
     <div className='col'>
       <div className='card shadow-sm'>
-        <Link to={`product/${id}`} state={productData}>
+        <Link to={`product/${id}`}>
           <img className='card-img-top bg-dark cover' height='200' alt='' src={image} />
         </Link>
         <div className='card-body'>

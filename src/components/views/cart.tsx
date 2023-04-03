@@ -1,3 +1,4 @@
+import { describe } from 'node:test';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '~/libs/store.module';
@@ -17,7 +18,7 @@ const Cart: FC = () => {
               items.map((item, index) => (
                 <tr key={`cart-item-${index}`}>
                   <th scope='row'>
-                    <Link to={`product/${item.id}`}>
+                    <Link to={`/product/${item.id}`}>
                       <img
                         className='card-img-top bg-dark cover'
                         width='100'
@@ -27,12 +28,12 @@ const Cart: FC = () => {
                     </Link>
                   </th>
                   <td>
-                    <Link to={`product/${item.id}`}>
+                    <Link to={`/product/${item.id}`}>
                       <b>{item.title}</b>
-                      <br />
-                      <br />
-                      <desc>{item.description}</desc>
                     </Link>
+                    <br />
+                    <br />
+                    <span>{item.description}</span>
                   </td>
                   <td>{item.category}</td>
                   <td>${item.price}</td>

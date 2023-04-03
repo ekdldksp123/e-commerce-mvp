@@ -1,13 +1,42 @@
-import { FC } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { FC, useState } from 'react';
+import { useQuery } from 'react-query';
+import { Link, useParams } from 'react-router-dom';
+import { getASingleProduct } from '~/libs/api.module';
 import { setCartData } from '~/libs/storage.module';
 import { useCart } from '~/libs/store.module';
+import { ProductData } from '~/types/product';
+import { ContainerCenter } from '../atoms/container-group';
 import ScrollToTopOnMount from '../atoms/scroll-to-top';
+import { Spinner } from '../atoms/spinner';
 
 const ProductDetail: FC = () => {
-  const location = useLocation();
+  const param = useParams();
+
   const { items, setItems } = useCart();
-  const { id, image, title, category, price, description } = location.state;
+  const { isLoading, error, data } = useQuery(
+    'product',
+    async () => await getASingleProduct(param.id),
+  );
+
+  if (isLoading) {
+    return (
+      <ContainerCenter>
+        <Spinner />
+      </ContainerCenter>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className='d-flex justify-content-center align-items-center'>
+        <>Error: {error}</>
+      </div>
+    );
+  }
+
+  const { id, image, title, category, price, description } = data as ProductData;
+
+  console.log(data);
 
   const onAddCart = () => {
     const copyItems = [...items];

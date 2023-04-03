@@ -7,8 +7,10 @@ export const getAllProducts = async () => {
 };
 
 // get single product
-export const getASingleProduct = async (id: string) => {
-  return axios.get(`https://fakestoreapi.com/products/${id}`).then((res) => res.data);
+export const getASingleProduct = async (id?: string) => {
+  console.log(id);
+  if (id) return axios.get(`https://fakestoreapi.com/products/${id}`).then((res) => res.data);
+  else throw new Error('No product id provided');
 };
 
 // add new product
