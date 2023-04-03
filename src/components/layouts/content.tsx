@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
 import { ContentProps } from '~/types/props';
 
 const Content: FC<ContentProps> = ({ children }) => {

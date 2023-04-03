@@ -6,7 +6,7 @@ import { useCart } from '~/libs/store.module';
 
 const Header: FC = () => {
   const { items } = useCart();
-  const [openedDrawer, setOpenedDrawer] = useState(false);
+  const openedDrawer = false;
 
   return (
     <header>
