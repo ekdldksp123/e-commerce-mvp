@@ -1,4 +1,3 @@
-import { describe } from 'node:test';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useCart } from '~/libs/store.module';

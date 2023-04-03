@@ -36,8 +36,6 @@ const ProductDetail: FC = () => {
 
   const { id, image, title, category, price, description } = data as ProductData;
 
-  console.log(data);
-
   const onAddCart = () => {
     const copyItems = [...items];
     const findItem = copyItems.find((v) => v.id === id);
