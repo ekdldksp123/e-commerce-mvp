@@ -17,7 +17,7 @@ const Header: FC = () => {
       amount += item.amount;
     }
     setAmountOfItems(amount);
-  }, []);
+  }, [items]);
 
   return (
     <header>
