@@ -1,6 +1,6 @@
 import { ProductData } from './product';
 
-export interface ProductDetail {
-  detail?: ProductData;
-  setDetail: (newDetail: ProductData) => void;
+export interface CartState {
+  items: ProductData[];
+  setItems: (item: ProductData[]) => void;
 }
