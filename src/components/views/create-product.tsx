@@ -8,8 +8,12 @@ const CreateProduct: FC = () => {
       <ScrollToTopOnMount />
       <ContainerCenter>
         <ContainerCenter style={{ width: '60%' }}>
-          <h4 className='mb-5'>Create Product</h4>
-          <input type='file' className='form-control' title='product image' name='image' />
+          <h4 className='mb-3'>Create Product</h4>
+          <div className='filebox '>
+            <input className='upload-name form-control' placeholder='Product Image' />
+            <label htmlFor='file'>Upload</label>
+            <input type='file' id='file' />
+          </div>
           <div className='form-floating w-100 my-3'>
             <input type='text' className='form-control' id='floatingTitle' placeholder='Title' />
             <label htmlFor='floatingTitle'>Title</label>
